@@ -1,5 +1,5 @@
 {
-  "name": "commit-lint",
+  "name": "@wushufen/commit-lint",
   "version": "1.0.0",
   "description": "git pre-commit hook lint code",
   "main": "install.js",
