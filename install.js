@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-const targetPath = `${__dirname}/../../`
+const targetPath = `${__dirname}`.replace(/node_modules.*/, '')
 const preCommitPath = `${targetPath}/.git/hooks/pre-commit`
 const outputFileName = `commit-lint`
 
