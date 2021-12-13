@@ -23,7 +23,7 @@ fi
 # fix
 # -f stylish unix visualstudio codeframe
 rs=$(npx eslint $files --fix)
-rs=$(npx eslint $files --color --quiet -f=unix)
+rs=$(npx eslint $files --quiet -f=unix)
 error=$?
 
 # add again
@@ -31,20 +31,21 @@ git add $files
 
 # error?
 if [[ $error != 0 ]]; then
-  echo "
+  output="
 请修复问题代码之后再提交
------------------------------------------------
-
+[1;31m-----------------------------------------------[0m
+[1;31m
 $rs
-"
-  echo -e "
-\033[31m\033[1m
-            请修复问题代码之后再提交
-\033[0m
-
+[0m
+[1;31m-----------------------------------------------[0m
 by: https://github.com/wushufen/commit-lint.git
------------------------------------------------
-"
+
+[1;31m请修复问题代码之后再提交[0m"
+  # output=${output//error/[1;31merror[0m}
+  # output=${output//Error/[1;31mError[0m}
+  # output=${output//ERROR/[1;31mERROR[0m}
+
+  echo "$output"
 
   exit 1
 fi
