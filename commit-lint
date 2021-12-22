@@ -6,7 +6,7 @@ files=$(
   egrep "[.](js|cjs|mjs|ts|jsx|tsx|vue)$" |
   egrep -v "^$"
 )
-echo "$files"
+# echo "$files"
 
 # !files
 if [[ -z $files ]]; then
