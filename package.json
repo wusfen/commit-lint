@@ -14,5 +14,8 @@
     "pre-commit lint eslint"
   ],
   "author": "wushufen",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.6.0"
+  }
 }
