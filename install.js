@@ -7,12 +7,17 @@ try {
   const shellFileName = `commit-lint`
 
   // backup
-  if (fs.existsSync(preCommitPath)) {
+  if (fs.existsSync(preCommitPath) && fs.statSync(preCommitPath).isFile()) {
     fs.writeFileSync(`${preCommitPath}.backup`, fs.readFileSync(preCommitPath))
   }
 
+  // dir
+  if (fs.existsSync(preCommitPath) && fs.statSync(preCommitPath).isDirectory()) {
+    fs.rmdirSync(preCommitPath)
+  }
+  fs.mkdirSync(hooksPath, {recursive: true}) // ensure
+  
   // write .git/hooks/pre-commit
-  fs.mkdirSync(`${preCommitPath}/..`, {recursive: true}) // ensure
   fs.writeFileSync(
     preCommitPath,
     `#!/usr/bin/env bash
